@@ -48,7 +48,22 @@ exports.signup_post = [
     res.redirect("/");
       return next(err);
   })
-]
+];
+
+exports.login_get = (req, res, next) => {
+  res.render("login_form", {title: "Log in", errors: []});
+}
+
+exports.login_post = (req, res, next) => {
+  res.render()
+}
+exports.logout_get = (req, res, next) => {
+  res.render()
+}
+
+//Finish login situation here
+//figure out if we need passport here as well
+//make a login_form in views
 
 
 

@@ -1,3 +1,4 @@
+/* eslint-disable */
 const createError = require("http-errors");
 require("dotenv").config();
 const express = require("express");
@@ -9,6 +10,8 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+
+const User = require("./models/user");
 
 const mongoDb = `mongodb+srv://${process.env.NAME}:${process.env.PASSWORD}@cluster0.tmb6lrp.mongodb.net/?retryWrites=true&w=majority`;
 mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });
@@ -23,6 +26,34 @@ const app = express();
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+
+passport.use(
+  new LocalStrategy(async(username, password, done ) => {
+    try {
+      const user = await User.findOne({ username: username });
+      if (!user) {
+        return done(null, false, { message: "incorrect username"});
+      };
+      if (user.password !== password) {
+        return done(null, false, { message: "incorrect password"});
+      };
+      return done(null, user);
+    } catch (err) {
+      return done(err);
+    }
+  })
+);
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+passport.deserializeUser(async function(id, done) {
+  try {
+    const user = await User.findById(id);
+    done(null, user);
+  } catch(err) {
+    done(err);
+  };
+});
 
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
