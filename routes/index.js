@@ -6,7 +6,9 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Mojo Dojo Casa House' });
 });
 
-router.get("/sign-up", user_controller.signup_get );
+// * SIGNUP PAGE *
+router.get("/sign-up", user_controller.signup_get);
 
 router.post("/sign-up", user_controller.signup_post);
+
 module.exports = router;
