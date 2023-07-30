@@ -3,6 +3,26 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+@font-face {
+  font-family: dollie;
+  src: url(dollie-script.ttf);
+}
+
 a {
   color: #00B7FF;
+}
+
+h1 {
+  font: 50px dollie;
+}
+
+.btn-submit {
+  background-color: rgb(236, 51, 172);
+  color: white;
+  padding: 0.5em;
+  border-radius: 5px;
+}
+
+.btn-submit:hover {
+  background-color: rgb(56, 196, 242);
 }

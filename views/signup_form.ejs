@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <title><%= title %></title>
+</head>
+<body>
+  <h1><%= title %></h1>
+  <form action="" method="POST">
+    <label for="email">Email</label>
+    <input name="email" placeholder="email" type="text" />
+    <label for="username">Username</label>
+    <input name="username" placeholder="username" type="text" />
+    <label for="password">Password</label>
+    <input name="password" type="password" />
+    <label for="avatar">Choose an avatar:</label>
+    <select name="avatar" id="avatar">
+      <option value="ken.jpg">Ken</option>
+      <option value="ken1.jpg">Ken Again</option>
+      <option value="ken2.jpg">A different Ken</option>
+      <option value="ken3.jpg">Just Ken</option>
+      <option value="ken4.jpg">Ken Again?</option>
+      <option value="ken5.jpg">Big Ken</option>
+    </select>
+    <button type="submit">Sign Up</button>
+  </form>
+</body>
+</html>
