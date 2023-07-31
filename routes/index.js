@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const user_controller = require("../controllers/userController");
-const passport = require("passport")
+const message_controller = require("../controllers/messageController");
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Mojo Dojo Casa House', user: req.user });
@@ -26,5 +27,9 @@ router.post("/member", user_controller.member_post);
 
 router.get("/admin", user_controller.admin_get);
 router.post("/admin", user_controller.admin_post);
+
+/* Create message */
+
+router.get("/create-message", message_controller.message_create_get);
 
 module.exports = router;

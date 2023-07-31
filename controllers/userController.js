@@ -66,7 +66,7 @@ exports.signup_post = [
 ];
 
 exports.login_get = (req, res, next) => {
-  res.render("login_form", {title: "Log in"});
+  res.render("login_form", { title: "Log in" });
 };
 
 exports.login_post = passport.authenticate("local", {
@@ -85,7 +85,7 @@ exports.member_get = asyncHandler(async(req, res, next) => {
   res.render("member", {title: "Become a member", errorMessage:[]})
 });
 
-exports.member_post = asyncHandler(async(req, res, next) => {
+exports.member_post = asyncHandler(async (req, res, next) => {
   try {
     const { memberPassword, membership_status } = req.body;
 
@@ -115,7 +115,7 @@ exports.member_post = asyncHandler(async(req, res, next) => {
 });
 
 exports.admin_get = asyncHandler(async(req, res, next) => {
-  res.render("admin", {title: "Become a admin", errorMessage:[]})
+  res.render("admin", { title: "Become a admin", errorMessage:[] })
 });
 
 exports.admin_post = asyncHandler(async(req, res, next) => {
@@ -127,7 +127,7 @@ exports.admin_post = asyncHandler(async(req, res, next) => {
     if (!adminCorrect) {
       return res.render("admin", {
         title: "Become a admin",
-        errorMessage: "THAT'S NOT THE PASSWORD, INTRUDER"
+        errorMessage: "THAT'S NOT THE PASSWORD, INTRUDER",
       });
     }
     const user = await User.findById(req.user._id);
