@@ -3,6 +3,7 @@ const User = require("../models/user");
 const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
 const passport = require("passport");
+const bcrypt = require("bcryptjs");
 
 // create a user
 exports.signup_get = (req, res, next) => {
@@ -28,11 +29,12 @@ exports.signup_post = [
 
   asyncHandler( async(req, res, next) => {
     const errors = validationResult(req);
-
+    const salt = await bcrypt.genSalt();
+    const passwordHash = await bcrypt.hash(req.body.password, salt);
     const user = new User({
       username: req.body.username,
       email: req.body.email,
-      password: req.body.password,
+      password: passwordHash,
       avatar: req.body.avatar,
     })
 

@@ -1,6 +1,7 @@
 /* eslint-disable */
 const createError = require("http-errors");
 require("dotenv").config();
+const bcrypt = require("bcryptjs");
 const express = require("express");
 const path = require("path");
 const session = require("express-session");
@@ -40,9 +41,11 @@ passport.use(
       if (!user) {
         return done(null, false, { message: "Incorrect username" });
       };
-      if (user.password !== password) {
-        return done(null, false, { message: "Incorrect password" });
-      };
+      bcrypt.compare(password, user.password, (err, res) => {
+        if (!res) {
+          return done(null, false, { message: "incorrect password"})
+        }
+      })
       return done(null, user);
     } catch(err) {
       return done(err);
