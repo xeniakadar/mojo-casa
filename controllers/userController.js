@@ -1,4 +1,3 @@
-/* eslint-disable */
 const User = require("../models/user");
 const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
@@ -15,19 +14,21 @@ exports.signup_post = [
     .trim()
     .isLength({ max: 25 })
     .escape(),
-    // .withMessage("Username must be specified"),
   body("email")
     .trim()
     .escape()
-    .isEmail().withMessage("Email must be specified"),
+    .isEmail()
+    .withMessage("Email must be specified"),
   body("password", "Password must be specified")
     .trim()
     .isLength({ min: 2 }).withMessage("Password must be at least 5 characters long")
     .escape()
-    .matches('[0-9]').withMessage("Password must contain a number")
-    .matches('[A-Z]').withMessage("Password must contain an uppercase letter"),
+    .matches('[0-9]')
+    .withMessage("Password must contain a number")
+    .matches('[A-Z]')
+    .withMessage("Password must contain an uppercase letter"),
 
-  asyncHandler( async(req, res, next) => {
+  asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(req.body.password, salt);
@@ -66,7 +67,7 @@ exports.signup_post = [
 
 exports.login_get = (req, res, next) => {
   res.render("login_form", {title: "Log in"});
-}
+};
 
 exports.login_post = passport.authenticate("local", {
   successRedirect: "/",
@@ -82,7 +83,7 @@ exports.logout_get = (req, res, next) => {
 
 exports.member_get = asyncHandler(async(req, res, next) => {
   res.render("member", {title: "Become a member", errorMessage:[]})
-})
+});
 
 exports.member_post = asyncHandler(async(req, res, next) => {
   try {
@@ -111,4 +112,37 @@ exports.member_post = asyncHandler(async(req, res, next) => {
   } catch (err) {
     next(err);
   }
-})
+});
+
+exports.admin_get = asyncHandler(async(req, res, next) => {
+  res.render("admin", {title: "Become a admin", errorMessage:[]})
+});
+
+exports.admin_post = asyncHandler(async(req, res, next) => {
+  try {
+    const { adminPassword, admin_status } = req.body;
+
+    const adminCorrect = (adminPassword === process.env.ADMIN_PASSWORD);
+
+    if (!adminCorrect) {
+      return res.render("admin", {
+        title: "Become a admin",
+        errorMessage: "THAT'S NOT THE PASSWORD, INTRUDER"
+      });
+    }
+    const user = await User.findById(req.user._id);
+
+    if (user) {
+      user.admin_status = !user.admin_status;
+      await user.save();
+      return res.redirect("/");
+    } else {
+      return res.render("admin", {
+        title: "Become a admin",
+        errorMessage: "User not found"
+      })
+    }
+  } catch (err) {
+    next(err);
+  }
+});

@@ -9,7 +9,6 @@ router.get('/', function(req, res, next) {
 
 /* SIGNUP PAGE */
 router.get("/sign-up", user_controller.signup_get);
-
 router.post("/sign-up", user_controller.signup_post);
 
 /* LOGIN PAGE */
@@ -22,5 +21,10 @@ router.get("/log-out", user_controller.logout_get);
 
 router.get("/member", user_controller.member_get);
 router.post("/member", user_controller.member_post);
+
+/* ADMIN PAGE */
+
+router.get("/admin", user_controller.admin_get);
+router.post("/admin", user_controller.admin_post);
 
 module.exports = router;
