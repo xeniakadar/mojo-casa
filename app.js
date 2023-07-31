@@ -34,24 +34,26 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
 passport.use(
-  new LocalStrategy(async(username, password, done) => {
+  new LocalStrategy(async (username, password, done) => {
     try {
       const user = await User.findOne({ username: username });
       if (!user) {
         return done(null, false, { message: "Incorrect username" });
-      };
-      bcrypt.compare(password, user.password, (err, res) => {
+      }
+      bcrypt.compare(password, user.password, (err, res) =>  {
         if (!res) {
-          return done(null, false, { message: "incorrect password"})
+          return done(null, false, { message: "incorrect password" })
         }
       })
       return done(null, user);
-    } catch(err) {
+    } catch (err) {
       return done(err);
-    };
+    }
   })
 );
+
 passport.serializeUser(function(user, done) {
   done(null, user.id);
 });

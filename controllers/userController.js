@@ -41,7 +41,7 @@ exports.signup_post = [
     if (!errors.isEmpty()) {
       console.log(errors)
       res.render("signup_form", {
-        title: "TRY AGAIN: Create a Profile",
+        title: "Create a Profile",
         user,
         errors: errors.array(),
       });
@@ -56,6 +56,7 @@ exports.signup_post = [
 exports.login_get = (req, res, next) => {
   res.render("login_form", {title: "Log in"});
 }
+
 
 exports.login_post = passport.authenticate("local", {
   successRedirect: "/",
