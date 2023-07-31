@@ -6,8 +6,9 @@
   </head>
   <body>
     <% if (user) {%>
-      <h1>WELCOME BACK TO <%= title %> <%= user.username %></h1>
+      <h1>WELCOME BACK TO <%= title %> <span><%= user.username %></span> </h1>
       <a href="/log-out">LOG OUT</a>
+      <img class="avatar" src="/images/<%= user.avatar %>">
     <% } else { %>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
