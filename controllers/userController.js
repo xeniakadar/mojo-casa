@@ -22,7 +22,7 @@ exports.signup_post = [
     .isEmail().withMessage("Email must be specified"),
   body("password", "Password must be specified")
     .trim()
-    .isLength({ min: 5 }).withMessage("Password must be at least 5 characters long")
+    .isLength({ min: 2 }).withMessage("Password must be at least 5 characters long")
     .escape()
     .matches('[0-9]').withMessage("Password must contain a number")
     .matches('[A-Z]').withMessage("Password must contain an uppercase letter"),
@@ -55,8 +55,8 @@ exports.signup_post = [
           user,
           errors: [{msg: "Username or email already exists"}],
         })
+        return;
       }
-      return;
     }
     await user.save();
     res.redirect("/log-in");
@@ -68,7 +68,6 @@ exports.login_get = (req, res, next) => {
   res.render("login_form", {title: "Log in"});
 }
 
-
 exports.login_post = passport.authenticate("local", {
   successRedirect: "/",
   failureRedirect: "/log-in"
@@ -76,17 +75,40 @@ exports.login_post = passport.authenticate("local", {
 
 exports.logout_get = (req, res, next) => {
   req.logout(function(err) {
-    if (err) {
-      return next(err);
-    }
+    if (err) return next(err);
     res.redirect("/");
   });
 };
 
-//Finish login situation here
-//figure out if we need passport here as well
-//make a login_form in views
+exports.member_get = asyncHandler(async(req, res, next) => {
+  res.render("member", {title: "Become a member", errorMessage:[]})
+})
 
+exports.member_post = asyncHandler(async(req, res, next) => {
+  try {
+    const { memberPassword, membership_status } = req.body;
 
+    const passwordCorrect = (memberPassword === process.env.MEMBER_PASSWORD);
 
-// exports.user_create_post = {}
+    if (!passwordCorrect) {
+      return res.render("member", {
+        title: "Become a member",
+        errorMessage: "THAT'S NOT THE PASSWORD, INTRUDER"
+      });
+    }
+    const user = await User.findById(req.user._id);
+
+    if (user) {
+      user.membership_status = !user.membership_status;
+      await user.save();
+      return res.redirect("/");
+    } else {
+      return res.render("member", {
+        title: "Become a member",
+        errorMessage: "User not found"
+      })
+    }
+  } catch (err) {
+    next(err);
+  }
+})

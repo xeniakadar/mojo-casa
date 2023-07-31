@@ -20,6 +20,7 @@ router.get("/log-out", user_controller.logout_get);
 
 /* MEMBER PAGE */
 
-
+router.get("/member", user_controller.member_get);
+router.post("/member", user_controller.member_post);
 
 module.exports = router;

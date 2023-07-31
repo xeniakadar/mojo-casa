@@ -6,9 +6,11 @@
   </head>
   <body>
     <% if (user) {%>
-      <h1>WELCOME BACK TO <%= title %> <span><%= user.username %></span> </h1>
       <a href="/log-out">LOG OUT</a>
+      <h1><span>Welcome back to the </span> <%= title %> , <span><%= user.username %></span> ! </h1>
       <img class="avatar" src="/images/<%= user.avatar %>">
+      <p>Not a member yet? Join the patriarchy by clicking the button below</p>
+      <a class="btn-submit" href="/member">Become a member</a>
     <% } else { %>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
