@@ -2,6 +2,7 @@
 const User = require("../models/user");
 const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
+const passport = require("passport");
 
 // create a user
 exports.signup_get = (req, res, next) => {
@@ -51,15 +52,22 @@ exports.signup_post = [
 ];
 
 exports.login_get = (req, res, next) => {
-  res.render("login_form", {title: "Log in", errors: []});
+  res.render("login_form", {title: "Log in"});
 }
 
-exports.login_post = (req, res, next) => {
-  res.render()
-}
+exports.login_post = passport.authenticate("local", {
+  successRedirect: "/",
+  failureRedirect: "/log-in"
+});
+
 exports.logout_get = (req, res, next) => {
-  res.render()
-}
+  req.logout(function(err) {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
+};
 
 //Finish login situation here
 //figure out if we need passport here as well
