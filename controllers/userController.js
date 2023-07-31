@@ -46,9 +46,20 @@ exports.signup_post = [
         errors: errors.array(),
       });
       return;
+    } else {
+      const usernameExists = await User.findOne({ username: req.body.username}).exec();
+      const emailExists = await User.findOne({ email: req.body.email}).exec();
+      if (usernameExists || emailExists) {
+        res.render("signup_form", {
+          title: "Create a Profile",
+          user,
+          errors: [{msg: "Username or email already exists"}],
+        })
+      }
+      return;
     }
     await user.save();
-    res.redirect("/");
+    res.redirect("/log-in");
       return next(err);
   })
 ];

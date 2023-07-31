@@ -18,4 +18,8 @@ router.get("/log-in", user_controller.login_get);
 router.post("/log-in", user_controller.login_post);
 router.get("/log-out", user_controller.logout_get);
 
+/* MEMBER PAGE */
+
+
+
 module.exports = router;
