@@ -6,7 +6,7 @@ const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
 
 exports.index = asyncHandler(async (req, res, next) => {
-  const allMessages = await Message.find({}, "title text time_stamp username")
+  const allMessages = await Message.find({}, "title text time_stamp username avatar")
     .sort({ time_stamp: -1 })
     .populate("text")
     .exec();
@@ -35,6 +35,7 @@ exports.message_create_post = [
       userid: req.user._id,
       username: req.user.username,
       time_stamp: moment().format('MMMM Do YYYY, h:mm:ss a'),
+      avatar: req.user.avatar,
     });
 
     if (!errors.isEmpty()) {

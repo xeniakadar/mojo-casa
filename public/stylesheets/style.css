@@ -37,6 +37,13 @@ h1>span {
   object-fit: cover;
   border-radius: 50%;
 }
+.avatar-sm {
+  height: 4em;
+  width: 4em;
+  object-fit: cover;
+  border-radius: 50%;
+  padding-left: 5px
+}
 
 .msg-card {
   margin: 0.5em;
@@ -63,4 +70,8 @@ h1>span {
 .date-name {
   display: flex;
   justify-content: space-between;
+}
+
+.user-profile {
+  display: flex;
 }
