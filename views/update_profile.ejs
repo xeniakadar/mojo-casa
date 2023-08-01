@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <title><%= title %></title>
+</head>
+<body>
+  <a href="/profile">Go back to profile</a>
+  <h1><span><%= title %></span></h1>
+  <p>Even if you are not changing your password, you must still enter your password to update your profile</p>
+  <form action="/update-profile" method="POST">
+    <label for="email">Email</label>
+    <input name="email" placeholder="email" type="text" value="<%= user.email %>"/>
+    <label for="username">Username</label>
+    <input name="username" placeholder="username" type="text" value="<%= user.username %>"/>
+    <label for="password">Password</label>
+    <input name="password" type="password"/>
+    <label for="avatar">Choose an avatar:</label>
+    <select name="avatar" id="avatar">
+      <option value="ken.jpeg">Ken</option>
+      <option value="ken1.jpeg">Ken Again</option>
+      <option value="ken2.jpeg">A different Ken</option>
+      <option value="ken3.jpeg">Just Ken</option>
+      <option value="ken4.jpeg">Ken Again?</option>
+      <option value="ken5.jpeg">Surprise Ken</option>
+    </select>
+    <button type="submit">Update</button>
+    <% if (errors) { %>
+      <ul>
+        <% for (let i = 0; i < errors.length; i++) { %>
+          <li><%= errors[i].msg %></li>
+        <% } %>
+      </ul>
+    <% } %>
+  </form>
+</body>
+</html>

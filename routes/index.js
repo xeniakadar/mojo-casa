@@ -19,6 +19,12 @@ router.get("/log-in", user_controller.login_get);
 router.post("/log-in", user_controller.login_post);
 router.get("/log-out", user_controller.logout_get);
 
+/* Update Profile */
+
+router.get("/profile", user_controller.profile_get);
+router.get("/update-profile", user_controller.update_get);
+router.post("/update-profile", user_controller.update_post);
+
 /* MEMBER PAGE */
 
 router.get("/member", user_controller.member_get);
@@ -37,6 +43,5 @@ router.post("/create-message", message_controller.message_create_post);
 /* Delete messages */
 
 router.post("/delete-message/:id", message_controller.message_delete_post);
-
 
 module.exports = router;
