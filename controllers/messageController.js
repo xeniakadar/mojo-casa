@@ -1,16 +1,17 @@
 const { locals } = require("../app");
+const moment = require("moment");
 const Message = require("../models/message");
 const User = require("../models/user");
 const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
 
-// exports.index = asyncHandler(async (req, res, next) => {
-//   const allPosts = await Message.find({}, "title text date username")
-//     .sort({ date: -1})
-//     .exec();
-//   res.render("posts", { title: ""})
-//   //make it so that the posts render on "/" while the stuff that used to be
-// })
+exports.index = asyncHandler(async (req, res, next) => {
+  const allMessages = await Message.find({}, "title text time_stamp username")
+    .sort({ time_stamp: -1 })
+    .populate("text")
+    .exec();
+  res.render('index', { title: 'Mojo Dojo Casa House', user: req.user, messages: allMessages });
+})
 
 exports.message_create_get = asyncHandler(async (req, res, next) => {
   res.render("create_message_form", { title: "Create Message", errors: []});
@@ -32,7 +33,8 @@ exports.message_create_post = [
       title: req.body.title,
       text: req.body.text,
       userid: req.user._id,
-      time_stamp: Date.now(),
+      username: req.user.username,
+      time_stamp: moment().format('MMMM Do YYYY, h:mm:ss a'),
     });
 
     if (!errors.isEmpty()) {

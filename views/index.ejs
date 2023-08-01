@@ -25,5 +25,18 @@
     <a class="btn-submit" href="/sign-up">Sign up</a>
     <a class="btn-submit" href="/log-in">Log in</a>
     <% } %>
+    <div>
+      <% messages.forEach(function(message) { %>
+        <div class="msg-card">
+          <p class="title"> <%= message.title %></p>
+          <p class="text"> <%= message.text %> </p>
+          <div class="date-name">
+            <p class="username"> <%= message.username %> </p>
+            <p class="time"> <%= message.time_stamp %> </p>
+
+          </div>
+        </div>
+      <% }); %>
+      </div>
   </body>
 </html>
