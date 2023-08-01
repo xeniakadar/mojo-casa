@@ -34,7 +34,9 @@ router.post("/admin", user_controller.admin_post);
 router.get("/create-message", message_controller.message_create_get);
 router.post("/create-message", message_controller.message_create_post);
 
-/* Display messages */
+/* Delete messages */
+
+router.post("/delete-message/:id", message_controller.message_delete_post);
 
 
 module.exports = router;
