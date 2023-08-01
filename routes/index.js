@@ -8,6 +8,9 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Mojo Dojo Casa House', user: req.user });
 });
 
+// /* GET Profile */
+// router.get("/profile", message_controller.index);
+
 /* SIGNUP PAGE */
 router.get("/sign-up", user_controller.signup_get);
 router.post("/sign-up", user_controller.signup_post);
@@ -31,5 +34,9 @@ router.post("/admin", user_controller.admin_post);
 /* Create message */
 
 router.get("/create-message", message_controller.message_create_get);
+router.post("/create-message", message_controller.message_create_post);
+
+/* Display messages */
+
 
 module.exports = router;

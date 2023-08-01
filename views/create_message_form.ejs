@@ -6,5 +6,19 @@
   </head>
   <body>
     <h1><%= title %></h1>
+    <form action="" method="POST">
+      <label for="title">Post Title</label>
+      <input name="title" placeholder="title..." type="text" />
+      <label for="text">Message</label>
+      <textarea name="text" placeholder="message..." rows="4" cols="50"></textarea>
+      <button class="btn-submit" type="submit">Sign Up</button>
+      <% if (errors) { %>
+        <ul>
+          <% for (let i = 0; i < errors.length; i++) { %>
+            <li><%= errors[i].msg %></li>
+          <% } %>
+        </ul>
+      <% } %>
+    </form>
   </body>
 </html>

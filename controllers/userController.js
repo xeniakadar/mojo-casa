@@ -37,10 +37,10 @@ exports.signup_post = [
       email: req.body.email,
       password: passwordHash,
       avatar: req.body.avatar,
-    })
+    });
 
     if (!errors.isEmpty()) {
-      console.log(errors)
+      console.log(errors);
       res.render("signup_form", {
         title: "Create a Profile",
         user,
