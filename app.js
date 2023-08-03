@@ -26,8 +26,7 @@ const User = require("./models/user");
 
 //database connection
 const mongoose = require("mongoose");
-const mongoDatabase = "mongodb+srv://xeniakadar:bpoWRHMR8Fhu9sdy@cluster0.tmb6lrp.mongodb.net/?retryWrites=true&w=majority";
-const mongoDb = process.env.MONGODB_URI || mongoDatabase;
+const mongoDb = process.env.MONGODB_URI;
 mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "mongo connection error"));
