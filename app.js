@@ -12,7 +12,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const compression = require("compression");
 const helmet = require("helmet");
-const MongoStore = require("connect-mongo")(session);
+const MongoStore = require("connect-mongo").default;
 
 const User = require("./models/user");
 
@@ -91,8 +91,7 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-    store: new MongoStore({ mongooseConnection: mongoose.connection }), // Use connect-mongo as the session store
-    // Other session options...
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
   })
 );
 app.use(passport.initialize());
