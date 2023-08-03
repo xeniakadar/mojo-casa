@@ -12,6 +12,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const compression = require("compression");
 const helmet = require("helmet");
+const MongoStore = require("connect-mongo")(session);
 
 const User = require("./models/user");
 
@@ -85,12 +86,15 @@ passport.deserializeUser(async function(id, done) {
 });
 
 //secret should be a process env value
-app.use(session(
-  { secret: process.env.SESSION_SECRET || "barbie",
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-  }
-));
+    store: new MongoStore({ mongooseConnection: mongoose.connection }), // Use connect-mongo as the session store
+    // Other session options...
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
