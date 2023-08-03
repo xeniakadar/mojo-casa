@@ -12,7 +12,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const compression = require("compression");
 const helmet = require("helmet");
-const MongoStore = require("connect-mongo").default;
+const MongoStore = require("connect-mongo")(session);
 
 const User = require("./models/user");
 
