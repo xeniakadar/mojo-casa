@@ -26,7 +26,7 @@ body {
 }
 
 .form-container form input {
-  padding-bottom: 20px;
+  padding: 5px;
   margin-bottom: 20px;
 }
 .form-container form label {
@@ -128,20 +128,6 @@ h1 {
   position: relative;
   top: 6px
 }
-
-
-
-
-/* .btn-submit {
-  background-color: rgb(236, 51, 172);
-  color: white;
-  padding: 0.5em;
-  border-radius: 5px;
-} */
-
-/* .btn-submit:hover {
-  background-color: rgb(56, 196, 242);
-} */
 
 .avatar {
   height: 10em;
@@ -248,6 +234,7 @@ h1 {
   touch-action: manipulation;
 }
 
+
 .btn-submit:after {
   background-color: #111;
   border-radius: 8px;
@@ -281,6 +268,7 @@ h1 {
     padding: 0 40px;
   }
 }
+
 
 
 .btn-update{
@@ -362,4 +350,24 @@ h1 {
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
+}
+
+.form-container form {
+  padding-top: 10px;
+  padding-bottom: 30px;
+  display: flex;
+  align-items: center;
+  background-color: #fdf6f4;
+  border: 2px solid #111;
+  border-radius: 8px;
+  color: #111;
+  font-size: 16px;
+  justify-content: center;
+  text-align: center;
+  z-index: 0;
+}
+
+.form-container form input {
+  width: 400px;
+  height: 15px;
 }
