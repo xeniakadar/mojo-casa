@@ -1,9 +1,7 @@
-const { locals } = require("../app");
 const moment = require("moment");
-const Message = require("../models/message");
-const User = require("../models/user");
 const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
+const Message = require("../models/message");
 
 exports.index = asyncHandler(async (req, res, next) => {
   const allMessages = await Message.find({}, "title text time_stamp username avatar")

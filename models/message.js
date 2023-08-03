@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { DateTime } = require("luxon");
 
 const Schema = mongoose.Schema;
 
@@ -9,7 +8,7 @@ const MessageSchema = new Schema({
   userid: { type: String },
   time_stamp: { type: String },
   username: { type: String },
-  avatar: {type: String},
+  avatar: { type: String },
 });
 
 module.exports = mongoose.model("Message", MessageSchema);

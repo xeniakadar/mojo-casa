@@ -1,6 +1,7 @@
 /* eslint-disable */
+const dotenv = require("dotenv");
+dotenv.config();
 const createError = require("http-errors");
-require("dotenv").config();
 const bcrypt = require("bcryptjs");
 const express = require("express");
 const path = require("path");
@@ -85,7 +86,7 @@ passport.deserializeUser(async function(id, done) {
 
 //secret should be a process env value
 app.use(session(
-  { secret: process.env.SESSION_SECRET,
+  { secret: process.env.SESSION_SECRET || "barbie",
     resave: false,
     saveUninitialized: true,
   }
@@ -118,6 +119,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
+
+console.log(process.env.MONGODB_URI);
 
 
 module.exports = app;
