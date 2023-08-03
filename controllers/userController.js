@@ -177,7 +177,7 @@ exports.member_post = asyncHandler(async (req, res, next) => {
     if (!passwordCorrect) {
       return res.render("member", {
         title: "Become a member",
-        errorMessage: "THAT'S NOT THE PASSWORD, INTRUDER"
+        errorMessage: "THAT'S NOT THE PASSWORD, INTRUDER!😡";
       });
     }
     const user = await User.findById(req.user._id);
@@ -210,7 +210,7 @@ exports.admin_post = asyncHandler(async(req, res, next) => {
     if (!adminCorrect) {
       return res.render("admin", {
         title: "Become a admin",
-        errorMessage: "THAT'S NOT THE PASSWORD, INTRUDER",
+        errorMessage: "THAT'S NOT THE PASSWORD!",
       });
     }
     const user = await User.findById(req.user._id);
