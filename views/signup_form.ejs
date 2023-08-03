@@ -6,31 +6,40 @@
   <title><%= title %></title>
 </head>
 <body>
-  <h1><%= title %></h1>
-  <form action="" method="POST">
-    <label for="email">Email</label>
-    <input name="email" placeholder="email" type="text" />
-    <label for="username">Username</label>
-    <input name="username" placeholder="username" type="text" />
-    <label for="password">Password</label>
-    <input name="password" type="password" />
-    <label for="avatar">Choose an avatar:</label>
-    <select name="avatar" id="avatar">
-      <option value="ken.jpeg">Ken</option>
-      <option value="ken1.jpeg">Ken Again</option>
-      <option value="ken2.jpeg">A different Ken</option>
-      <option value="ken3.jpeg">Just Ken</option>
-      <option value="ken4.jpeg">Ken Again?</option>
-      <option value="ken5.jpeg">Surprise Ken</option>
-    </select>
-    <button type="submit">Sign Up</button>
-    <% if (errors) { %>
-      <ul>
-        <% for (let i = 0; i < errors.length; i++) { %>
-          <li><%= errors[i].msg %></li>
-        <% } %>
-      </ul>
-    <% } %>
-  </form>
+  <nav class="nav">
+    <a href="/ " class="nav-link ">Home</a>
+    <div class="nav">
+      <a class="nav-link" href="/sign-up">Sign up</a>
+      <a class="nav-link" href="/log-in">Log in</a>
+    </div>
+  </nav>
+  <div class="container form-container">
+    <h1><%= title %></h1>
+    <form action="" method="POST">
+      <label for="email">Email</label>
+      <input name="email" placeholder="email" type="text" />
+      <label for="username">Username</label>
+      <input name="username" placeholder="username" type="text" />
+      <label for="password">Password</label>
+      <input name="password" type="password" />
+      <label for="avatar">Choose an avatar:</label>
+      <select name="avatar" id="avatar">
+        <option value="ken.jpeg">Ken</option>
+        <option value="ken1.jpeg">Ken Again</option>
+        <option value="ken2.jpeg">A different Ken</option>
+        <option value="ken3.jpeg">Just Ken</option>
+        <option value="ken4.jpeg">Ken Again?</option>
+        <option value="ken5.jpeg">Surprise Ken</option>
+      </select>
+      <button class="btn-submit" type="submit">Sign Up</button>
+      <% if (errors) { %>
+        <ul>
+          <% for (let i = 0; i < errors.length; i++) { %>
+            <li><%= errors[i].msg %></li>
+          <% } %>
+        </ul>
+      <% } %>
+    </form>
+  </div>
 </body>
 </html>

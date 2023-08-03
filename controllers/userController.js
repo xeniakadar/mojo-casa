@@ -8,7 +8,7 @@ const bcrypt = require("bcryptjs");
 
 // create a user
 exports.signup_get = (req, res, next) => {
-  res.render("update_profile", { title: "Create a Profile", errors: []});
+  res.render("signup_form", { title: "Create a Profile", errors: []});
 };
 
 exports.signup_post = [
@@ -43,7 +43,7 @@ exports.signup_post = [
 
     if (!errors.isEmpty()) {
       console.log(errors);
-      res.render("update_profile", {
+      res.render("signup_form", {
         title: "Create a Profile",
         user,
         errors: errors.array(),
@@ -53,7 +53,7 @@ exports.signup_post = [
       const usernameExists = await User.findOne({ username: req.body.username}).exec();
       const emailExists = await User.findOne({ email: req.body.email}).exec();
       if (usernameExists || emailExists) {
-        res.render("update_profile", {
+        res.render("signup_form", {
           title: "Create a Profile",
           user,
           errors: [{msg: "Username or email already exists"}],

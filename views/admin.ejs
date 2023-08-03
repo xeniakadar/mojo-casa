@@ -5,14 +5,29 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <% if (errorMessage) { %>
-      <p><%= errorMessage %></p>
-    <% } %>
-    <form action="" method="POST">
-      <label for="adminPassword">Enter the secret password</label>
-      <input name="adminPassword" placeholder="Enter admin password" type="text" />
-      <button class="btn-submit" type="submit">Submit</button>
-    </form>
+    <nav class="nav">
+      <a href="/ " class="nav-link ">Home</a>
+      <div class="nav">
+          <a class="nav-link" href="/create-message">New Message</a>
+          <!-- <div class="nav-profile-photo"> -->
+            <img class="avatar-xs" src="/images/<%= currentUser.avatar %>">
+            <a class="nav-link" href="/profile"> <%= currentUser.username %></a>
+          <!-- </div> -->
+          <a class="nav-link" href="/log-out ">Log out</a>
+
+      </div>
+    </nav>
+    <div class="container container-member-admin">
+      <h1><%= title %></h1>
+      <% if (errorMessage) { %>
+        <p><span><%= errorMessage %> !!!!</span></p>
+      <% } %>
+      <form action="" method="POST">
+        <label for="adminPassword">Enter the secret password</label>
+        <input name="adminPassword" placeholder="Enter admin password" type="text" />
+        <button class="btn-submit button-56" type="submit">Submit</button>
+      </form>
+
+    </div>
   </body>
 </html>

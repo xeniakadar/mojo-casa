@@ -5,20 +5,34 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <form action="" method="POST">
-      <label for="title">Post Title</label>
-      <input name="title" placeholder="title..." type="text" />
-      <label for="text">Message</label>
-      <textarea name="text" placeholder="message..." rows="4" cols="50"></textarea>
-      <button class="btn-submit" type="submit">Submit Message</button>
-      <% if (errors) { %>
-        <ul>
-          <% for (let i = 0; i < errors.length; i++) { %>
-            <li><%= errors[i].msg %></li>
-          <% } %>
-        </ul>
-      <% } %>
-    </form>
+    <nav class="nav">
+      <a href="/ " class="nav-link ">Home</a>
+      <div class="nav">
+          <a class="nav-link" href="/create-message">New Message</a>
+          <!-- <div class="nav-profile-photo"> -->
+            <img class="avatar-xs" src="/images/<%= currentUser.avatar %>">
+            <a class="nav-link" href="/profile"> <%= currentUser.username %></a>
+          <!-- </div> -->
+          <a class="nav-link" href="/log-out ">Log out</a>
+
+      </div>
+    </nav>
+    <div class="container form-container">
+      <h1><%= title %></h1>
+      <form action="" method="POST">
+        <label for="title">Post Title</label>
+        <input name="title" placeholder="title..." type="text" />
+        <label for="text">Message</label>
+        <textarea name="text" placeholder="message..." rows="4" cols="50"></textarea>
+        <button class="btn-submit" type="submit">Submit Message</button>
+        <% if (errors) { %>
+          <ul>
+            <% for (let i = 0; i < errors.length; i++) { %>
+              <li><%= errors[i].msg %></li>
+            <% } %>
+          </ul>
+        <% } %>
+      </form>
+    </div>
   </body>
 </html>

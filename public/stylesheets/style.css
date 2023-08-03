@@ -1,35 +1,147 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 @font-face {
   font-family: dollie;
   src: url(dollie-script.ttf);
 }
+body {
+  font-size: 14px;
+  font-family: Montserrat;
+  margin: 0;
+  padding: 0;
+}
 
-a {
-  color: #00B7FF;
+.container {
+  margin: 20px;
+}
+
+.container h1 {
+  text-align: center;
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container form input {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+.form-container form label {
+  padding-bottom: 7px;
+}
+
+.form-container form button {
+  margin-top: 20px;
+}
+.form-container h1 {
+  color: #e94196;
+  font-family: dollie;
+  font-size: 4em;
+}
+
+
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fee6e3;
+  color: black;
+  margin: 0px;
+  padding: 5px;
+  padding-right: 10px;
+  height: 3em;
+  align-items: center;
+  -webkit-box-shadow: -6px -27px 12px 27px rgba(105,0,67,0.43);
+  box-shadow: -6px -27px 12px 27px rgba(105,0,67,0.43);
+}
+
+.nav-link {
+  text-decoration: none;
+  padding-right: 30px;
+  color: #e94196;
+  font-weight: 500;
+  font-size: 1.5em;
+}
+
+.nav-link:hover {
+  color: rgb(154, 226, 255);
+}
+
+.nav:first-child {
+  padding-left: 30px;
+}
+
+.profile-container {
+  display: flex;
+}
+
+.profile h2 {
+  font-weight: 500;
+}
+
+.profile-container img {
+  padding-right: 10px;
+}
+
+.user-info {
+  display: grid;
+  grid-template-columns: 5em 20em;
+  max-width: 400px;
+  gap: 10px;
+  font-size: 1.4em
+}
+.user-var {
+  font-weight: 100;
+}
+
+.active {
+  color: rgb(13, 155, 13);
+}
+
+.container {
+  padding: 10px;
+  padding-top: 0px;
+}
+
+h1 span {
+  font-family: dollie;
+  font-size: 45px;
+  color: #e94196;
 }
 
 h1 {
-  font: 50px dollie;
+  font-weight: 400;
 }
 
-h1>span {
-  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+.nav-profile-photo {
+  display: flex;
 }
 
-.btn-submit {
+.avatar-xs{
+  height: 2em;
+  width: 2em;
+  object-fit: cover;
+  border-radius: 50%;
+  position: relative;
+  top: 6px
+}
+
+
+
+
+/* .btn-submit {
   background-color: rgb(236, 51, 172);
   color: white;
   padding: 0.5em;
   border-radius: 5px;
-}
+} */
 
-.btn-submit:hover {
+/* .btn-submit:hover {
   background-color: rgb(56, 196, 242);
-}
+} */
 
 .avatar {
   height: 10em;
@@ -38,40 +150,202 @@ h1>span {
   border-radius: 50%;
 }
 .avatar-sm {
-  height: 4em;
-  width: 4em;
+  height: 2em;
+  width: 2em;
   object-fit: cover;
   border-radius: 50%;
   padding-left: 5px
 }
 
 .msg-card {
-  margin: 0.5em;
-  padding: 0.5em;
-  background-color: rgb(223, 247, 255);
-  border-radius: 5px;
+  align-items: center;
+  background-color: #fdf6f4;
+  border: 2px solid #111;
+  border-radius: 8px;
+  color: #111;
+  font-family: Inter,sans-serif;
+  font-size: 16px;
+  height: auto;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start; */
+  line-height: 24px;
+  max-width: 100%;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  z-index: 0;
+  max-width: 1000px;
 }
 
 .title {
-  font-size: 3em;
-  padding: 0;
-  margin: 0;
+  font-size: 2.5em;
+  padding-top: 0.5em;
   font-family: dollie;
+  margin: 0;
+  text-align: left;
+  text-decoration: underline;
+  color: #e94196;
 }
 
 .text {
-  font-size: 1.3em;
+  font-size: 1em;
+  text-align: left;
 }
 
-.date {
-  font-size: 0.6em;
-}
 
 .date-name {
   display: flex;
   justify-content: space-between;
+
+}
+.date {
+  font-size: 0.6em;
 }
 
 .user-profile {
   display: flex;
+  align-items: center;
+}
+
+.username {
+  padding-left: 5px;
+  font-size: 1.4em;
+}
+
+
+
+.btn-submit {
+  align-items: center;
+  background-color: #fee6e3;
+  border: 2px solid #111;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #111;
+  cursor: pointer;
+  display: flex;
+  font-family: Inter,sans-serif;
+  font-size: 16px;
+  height: 48px;
+  justify-content: center;
+  line-height: 24px;
+  max-width: 100%;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.btn-submit:after {
+  background-color: #111;
+  border-radius: 8px;
+  content: "";
+  display: block;
+  height: 48px;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  top: -2px;
+  transform: translate(8px, 8px);
+  transition: transform .2s ease-out;
+  z-index: -1;
+}
+
+.btn-submit:hover:after {
+  transform: translate(0, 0);
+}
+
+.btn-submit:active {
+  background-color: #ffdeda;
+  outline: 0;
+}
+
+.btn-submit:hover {
+  outline: 0;
+}
+
+@media (min-width: 768px) {
+  .btn-submit {
+    padding: 0 40px;
+  }
+}
+
+
+.btn-update{
+  background-color: #e3ecfe;
+  width: 250px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+.profile-admin-member{
+  width: 250px;
+  margin-top: 20px;
+}
+
+.back {
+  width: 150px;
+  padding: 0;
+  margin-bottom:20px;
+  background-color: #fdf6f4;
+}
+
+.warning {
+  color: rgb(165, 17, 17);
+}
+
+.container-member-admin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+}
+.container-member-admin form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-member-admin h1 {
+  font-family: dollie;
+  font-size: 4em;
+  padding: 0;
+  padding: 0;
+  margin: 0;
+  margin-top: 10px;
+  color: #e94196;
+}
+
+.container-member-admin p {
+  color: red;
+  font-weight: 900;
+}
+
+.container-member-admin label {
+  padding-bottom: 10px;
+}
+.container-member-admin input {
+  margin-bottom: 10px;
+}
+
+.msg-card-message {
+  font-size: 1.5em;
+  color: #e94196;
+}
+.msg-card-message span {
+  color: #41aee9;
+  font-weight: 600;
 }

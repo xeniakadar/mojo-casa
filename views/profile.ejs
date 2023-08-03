@@ -5,55 +5,77 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <% if (user) {%>
-      <a href="/log-out">LOG OUT</a>
-      <a href="/">Main Page</a>
-      <h1><span><%= title %></span></h1>
-      <img class="avatar" src="/images/<%= user.avatar %>">
-      <h2> <%= user.username %> </h2>
-      <h2> <%= user.email %> </h2>
-      <% if (user.membership_status === true) {%>
-      <h2>You're a member. You can see who created a post and when.</h2>
-      <% } %>
-      <% if (user.admin_status === true) {%>
-      <h2>You're an admin. You can see who created a post and when, and you can also delete posts.</h2>
-      <% } %>
-      <% if (user.membership_status === false) {%>
-        <p>Not a member yet? Join the patriarchy by clicking the button below</p>
-        <a class="btn-submit" href="/member">Become a member</a>
-      <% } %>
-      <% if (user.admin_status === false) {%>
-        <p>Click here to gain admin status</p>
-        <a class="btn-submit" href="/admin">Admin</a>
-      <% } %>
-        <p>Click below to update your profile</p>
-        <a class="btn-submit" href="/update-profile">Update Profile</a>
-        <div>
-          <% if (user_messages.length > 0) { %>
-            <% user_messages.forEach(function(message) { %>
-              <div class="msg-card">
-                <p class="title"> <%= message.title %></p>
-                <p class="text"> <%= message.text %> </p>
-                <div class="date-name">
-                  <div class="user-profile">
-                    <img class="avatar-sm" src="/images/<%= message.avatar %>">
-                    <p class="username"> <%= message.username %> </p>
-                  </div>
-                  <p class="time"> <%= message.time_stamp %> </p>
-                </div>
-                <% if ( user && user.admin_status===true) {%>
-                  <form action="/delete-message/<%= message._id %>" method="POST">
-                    <button class="btn-submit" type="submit">Delete</button>
-                  </form>
-                <% } %>
-              </div>
-              <% }); %>
-          <% } else { %>
-            <h1>You haven't posted anything yet</h1>
-            <% } %>
+    <nav class="nav">
+      <a href="/ " class="nav-link ">Home</a>
+      <div class="nav">
+        <% if (user) {%>
+          <a class="nav-link" href="/create-message">New Message</a>
+          <!-- <div class="nav-profile-photo"> -->
+            <img class="avatar-xs" src="/images/<%= user.avatar %>">
+            <a class="nav-link" href="/profile"> <%= user.username %></a>
+          <!-- </div> -->
+          <a class="nav-link" href="/log-out ">Log out</a>
+        <% } else { %>
+          <a class="nav-link" href="/sign-up">Sign up</a>
+          <a class="nav-link" href="/log-in">Log in</a>
+        <% } %>
+      </div>
+    </nav>
+    <div class="container profile">
+      <% if (user) {%>
+        <a href="/" class="btn-submit back">Main Page</a>
+        <h2><%= title %></h2>
+        <div class="profile-container">
+          <img class="avatar" src="/images/<%= user.avatar %>">
+          <div class="user-info">
+            <p class="user-var">Username:   </p>
+            <p class="user-name"><%= user.username %></p>
+            <p class="user-var">Email:</p>
+            <p class="user-name"><%= user.email %> </p>
           </div>
-    <% } else { %>
-    <h1> Sign in to view your profile </h1>
-    <% } %>
+        </div>
+        <a class="btn-submit btn-update" href="/update-profile">Update Profile</a>
+        <% if (user.membership_status === true) {%>
+        <h2>Membership status <span class="active">active</span>. You can see who created a post and when.</h2>
+        <% } %>
+        <% if (user.admin_status === true) {%>
+        <h2>Admin status <span class="active">active</span>. You can see who created a post and when, and you can also delete posts.</h2>
+        <% } %>
+        <% if (user.membership_status === false) {%>
+          <p>Not a member yet? Join the patriarchy by clicking the button below</p>
+          <a class="btn-submit profile-admin-member" href="/member">Become a member</a>
+        <% } %>
+        <% if (user.admin_status === false) {%>
+          <p>Click here to gain admin status</p>
+          <a class="btn-submit profile-admin-member" href="/admin">Become Admin</a>
+        <% } %>
+          <div class="msg-container">
+            <% if (user_messages.length > 0) { %>
+              <% user_messages.forEach(function(message) { %>
+                <div class="msg-card">
+                  <p class="title"> <%= message.title %></p>
+                  <p class="text"> <%= message.text %> </p>
+                  <div class="date-name">
+                    <div class="user-profile">
+                      <img class="avatar-sm" src="/images/<%= message.avatar %>">
+                      <p class="username"> <%= message.username %> </p>
+                    </div>
+                    <p class="time"> <%= message.time_stamp %> </p>
+                  </div>
+                  <% if ( user && user.admin_status===true) {%>
+                    <form action="/delete-message/<%= message._id %>" method="POST">
+                      <button class="btn-submit" type="submit">Delete</button>
+                    </form>
+                  <% } %>
+                </div>
+                <% }); %>
+            <% } else { %>
+              <h1>You haven't posted anything yet</h1>
+              <% } %>
+            </div>
+      <% } else { %>
+      <h1> Sign in to view your profile </h1>
+      <% } %>
+    </div>
   </body>
 </html>

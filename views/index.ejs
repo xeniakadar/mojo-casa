@@ -3,52 +3,55 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
   <body>
-    <% if (user) {%>
-      <a href="/log-out">LOG OUT</a>
-      <h1><span>Welcome back to the </span> <%= title %>, <span><%= user.username %></span> ! </h1>
-      <img class="avatar" src="/images/<%= user.avatar %>">
-      <a class="btn-submit" href="/profile">Profile</a>
-      <% if (user.membership_status === false) {%>
-        <p>Not a member yet? Join the patriarchy by clicking the button below</p>
-        <a class="btn-submit" href="/member">Become a member</a>
-      <% } %>
-      <% if (user.admin_status === false) {%>
-        <p>Click here to gain admin status</p>
-        <a class="btn-submit" href="/admin">Admin</a>
-      <% } %>
-      <p>Create a message</p>
-      <a class="btn-submit" href="/create-message">New Message</a>
-    <% } else { %>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <a class="btn-submit" href="/sign-up">Sign up</a>
-    <a class="btn-submit" href="/log-in">Log in</a>
-    <% } %>
-    <div>
-      <% messages.forEach(function(message) { %>
-        <div class="msg-card">
-          <p class="title"> <%= message.title %></p>
-          <p class="text"> <%= message.text %> </p>
-          <% if (user && (user.membership_status===true || user.admin_status===true) ) {%>
-            <div class="date-name">
-              <div class="user-profile">
-                <img class="avatar-sm" src="/images/<%= message.avatar %>">
-                <p class="username"> <%= message.username %> </p>
-              </div>
-              <p class="time"> <%= message.time_stamp %> </p>
-
-            </div>
-          <% } %>
-          <% if ( user && user.admin_status===true) {%>
-            <form action="/delete-message/<%= message._id %>" method="POST">
-              <button class="btn-submit" type="submit">Delete</button>
-            </form>
-          <% } %>
-        </div>
-        <% }); %>
-
+    <nav class="nav">
+      <a href="/ " class="nav-link ">Home</a>
+      <div class="nav">
+        <% if (user) {%>
+          <a class="nav-link" href="/create-message">New Message</a>
+          <!-- <div class="nav-profile-photo"> -->
+            <img class="avatar-xs" src="/images/<%= user.avatar %>">
+            <a class="nav-link" href="/profile"> <%= user.username %></a>
+          <!-- </div> -->
+          <a class="nav-link" href="/log-out ">Log out</a>
+        <% } else { %>
+          <a class="nav-link" href="/sign-up">Sign up</a>
+          <a class="nav-link" href="/log-in">Log in</a>
+        <% } %>
       </div>
+    </nav>
+    <div class="container">
+      <% if (user) {%>
+        <h1>Welcome to the 🐎 <span> <%= title %> </span> 🐎, <%= user.username %> ! </h1>
+      <% } else { %>
+      <h1>Welcome to the 🐎 <span> <%= title %> </span> 🐎</h1>
+      <div class="msg-card msg-card-message">
+        <p>Step into the world of <span>Ken's</span> Mojo Dojo Casa House! View messages posted by <span>Kens</span>, but only <span>Kens</span> with the secret password can unveil the authors and timestamps. Unleash true power with a second secret password, becoming an "Admin" with the ability to delete messages. Embrace the patriarchy (and the horses🐴) and discover what other <span>Kens</span> have going on! </p>
+      </div>
+      <% } %>
+      <div class="msg-container">
+        <% messages.forEach(function(message) { %>
+          <div class="msg-card">
+            <p class="title"> <%= message.title %></p>
+            <p class="text"> <%= message.text %> </p>
+            <% if (user && (user.membership_status===true || user.admin_status===true) ) {%>
+              <div class="date-name">
+                <div class="user-profile">
+                  <img class="avatar-sm" src="/images/<%= message.avatar %>">
+                  <p class="username"> <%= message.username %> </p>
+                </div>
+                <p class="time"> <%= message.time_stamp %> </p>
+
+              </div>
+            <% } %>
+            <% if ( user && user.admin_status===true) {%>
+              <form action="/delete-message/<%= message._id %>" method="POST">
+                <button class="btn-submit" type="submit">Delete</button>
+              </form>
+            <% } %>
+          </div>
+        <% }); %>
+      </div>
+    </div>
   </body>
 </html>
