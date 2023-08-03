@@ -1,7 +1,7 @@
 /* eslint-disable */
+const createError = require("http-errors");
 const dotenv = require("dotenv");
 dotenv.config();
-const createError = require("http-errors");
 const bcrypt = require("bcryptjs");
 const express = require("express");
 const path = require("path");
@@ -12,7 +12,12 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const compression = require("compression");
 const helmet = require("helmet");
-const MongoStore = require("connect-mongo")(session);
+
+const RateLimit = require("express-rate-limit");
+const limiter = RateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 20,
+});
 
 const User = require("./models/user");
 
@@ -28,11 +33,6 @@ const usersRouter = require("./routes/users");
 
 const app = express();
 
-const RateLimit = require("express-rate-limit");
-const limiter = RateLimit({
-  windowMs: 1 * 60 * 1000, // 1 minute
-  max: 20,
-});
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -91,7 +91,6 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-    store: new MongoStore({ mongooseConnection: mongoose.connection }),
   })
 );
 app.use(passport.initialize());
