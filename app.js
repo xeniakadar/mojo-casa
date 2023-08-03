@@ -9,11 +9,13 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-const mongoose = require("mongoose");
+const compression = require("compression");
+const helmet = require("helmet");
 
 const User = require("./models/user");
 
 //database connection
+const mongoose = require("mongoose");
 const mongoDb = process.env.MONGODB_URI;
 mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });
 const db = mongoose.connection;
@@ -21,9 +23,6 @@ db.on("error", console.error.bind(console, "mongo connection error"));
 
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
-
-const compression = require("compression");
-const helmet = require("helmet");
 
 const app = express();
 
@@ -84,7 +83,7 @@ passport.deserializeUser(async function(id, done) {
   };
 });
 //secret should be a process env value
-app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+app.use(session({ secret: mongoDb, resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
