@@ -82,8 +82,14 @@ passport.deserializeUser(async function(id, done) {
     done(err);
   };
 });
+
 //secret should be a process env value
-app.use(session({ secret: mongoDb, resave: false, saveUninitialized: true }));
+app.use(session(
+  { secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+  }
+));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
