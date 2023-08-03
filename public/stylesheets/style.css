@@ -179,7 +179,7 @@ h1 {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  width: auto;
+  width: 700px;
   margin-top: 20px;
   margin-bottom: 20px;
   padding: 20px;
@@ -344,8 +344,22 @@ h1 {
 .msg-card-message {
   font-size: 1.5em;
   color: #e94196;
+  width: auto;
 }
 .msg-card-message span {
   color: #41aee9;
   font-weight: 600;
+}
+
+.msg-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.msg-container-profile {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
 }
