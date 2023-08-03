@@ -91,7 +91,7 @@ passport.deserializeUser(async function(id, done) {
 //secret should be a process env value
 app.use(
   session({
-    secret: "barbie",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     store: new MemoryStore({
