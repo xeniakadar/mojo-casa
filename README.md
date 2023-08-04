@@ -1,7 +1,7 @@
 <h1>Mojo Dojo Casa Clubhouse</h1>
 
 ## Short Description
-This website is a platform that allows users to create profiles and log in securely. Users can post messages and view messages created by others, and they have the option to update their profiles, including their username, email, password, and avatar image. Everyone can see the posts, but only those who know the secret password can see who posted and when. Those with admin access can also delete posts.
+This website is a platform that allows users to create profiles and log in securely. Users can post messages and view messages created by others. Everyone can see the posts, but only those who know the secret password can see who posted and when. Those with admin access can also delete posts. Users have the option to update their profiles, including their username, email, password, and avatar image. On their profile, they can also view all the messages that they have posted.
 
 ## Demo
 Checkout the <a href='https://mojo-casa-production.up.railway.app/' target="_blank">live demo</a>. If you want to experience all the features the member password is "kenough" and the admin password is "barbierulez".
